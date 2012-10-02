@@ -1,6 +1,7 @@
 require 'active_support/core_ext/hash'
 require 'active_support/inflector'
 require 'multi_json'
+require 'thread'
 
 require 'history_book/event'
 require 'history_book/stream'
