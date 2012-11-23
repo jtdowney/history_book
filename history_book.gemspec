@@ -8,6 +8,7 @@ Gem::Specification.new do |s|
   s.authors     = ['John Downey']
   s.email       = ['jdowney@gmail.com']
   s.homepage    = 'http://github.com/jtdowney/history_book'
+  s.license     = 'MIT'
   s.summary     = %q{HistoryBook is a ruby implementation of the event sourcing pattern.}
   s.description = %q{This library provides an interface for event sourcing over a pluggable back end data store. Currently it supports the Sequel gem and its data stores as well as an in-memory data store for testing.}
 
