@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 describe HistoryBook::Memory::Store do
+  subject(:store) { HistoryBook::Memory::Store.new }
+
   before(:each) do
     HistoryBook::Memory::Store.reset!
-    @store = HistoryBook::Memory::Store.new
   end
 
   it_behaves_like 'a storage driver'
