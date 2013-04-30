@@ -1,8 +1,9 @@
 module HistoryBook
   module Sequel
     class Store
-      def initialize(db)
+      def initialize(db, events_table)
         @db = db
+        @events_table = events_table
 
         _create_events_table
       end
@@ -24,7 +25,7 @@ module HistoryBook
           new_events = Array(new_events)
           new_events.each do |new_event|
             max_revision += 1
-            @db[:events].insert(
+            @db.from(@events_table).insert(
               :stream_id => id,
               :revision => max_revision,
               :timestamp => DateTime.now.utc,
@@ -36,7 +37,7 @@ module HistoryBook
       end
 
       def _create_events_table
-        @db.create_table?(:events) do
+        @db.create_table?(@events_table) do
           primary_key :id
           String :stream_id
           Integer :revision
@@ -49,7 +50,7 @@ module HistoryBook
 
       def _load_rows(id, from, to)
         rows = @db.
-          from(:events).
+          from(@events_table).
           where(:stream_id => id).
           where('revision >= ?', from)
 
@@ -61,7 +62,7 @@ module HistoryBook
       end
 
       def _max_revision(id)
-        @db.from(:events).where(:stream_id => id).max(:revision) || 0
+        @db.from(@events_table).where(:stream_id => id).max(:revision) || 0
       end
 
       def _encode_data(data)
