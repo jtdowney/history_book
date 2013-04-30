@@ -19,9 +19,9 @@ Gem::Specification.new do |s|
   s.add_dependency 'activesupport', '>= 3.0'
   s.add_dependency 'multi_json', '>= 1.0'
 
-  s.add_development_dependency 'rspec', '~> 2.11'
-  s.add_development_dependency 'rake'
-  s.add_development_dependency 'sequel', '~> 3.40'
-  s.add_development_dependency 'sqlite3-ruby', '~> 1.3'
-  s.add_development_dependency 'yajl-ruby', '~> 1.1'
+  s.add_development_dependency 'rspec', '2.13.0'
+  s.add_development_dependency 'rake', '10.0.3'
+  s.add_development_dependency 'sequel', '3.46.0'
+  s.add_development_dependency 'sqlite3', '1.3.7'
+  s.add_development_dependency 'yajl-ruby', '1.1.0'
 end
