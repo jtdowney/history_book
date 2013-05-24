@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.summary     = %q{HistoryBook is a ruby implementation of the event sourcing pattern.}
   s.description = %q{This library provides an interface for event sourcing over a pluggable back end data store. Currently it supports the Sequel gem and its data stores as well as an in-memory data store for testing.}
 
-  s.files        = Dir.glob('{lib,spec}/**/*.rb') + %w{README.md}
+  s.files        = Dir.glob('{lib,spec}/**/*.rb') + %w{README.md LICENSE}
   s.test_files   = Dir.glob('spec/**/*')
   s.require_path = 'lib'
 
