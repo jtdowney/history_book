@@ -1,3 +1,5 @@
+require 'thread'
+
 module HistoryBook
   module Memory
     class Store

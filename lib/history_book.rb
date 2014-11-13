@@ -1,7 +1,4 @@
-require 'active_support/core_ext/hash'
-require 'active_support/inflector'
-require 'multi_json'
-require 'thread'
+require 'transit'
 
 require 'history_book/event'
 require 'history_book/stream'
@@ -11,6 +8,11 @@ module HistoryBook
   class << self
     attr_reader :config
   end
+
+  Drivers = {
+    'memory' => 'Memory',
+    'sequel' => 'Sequel',
+  }
 
   def self.configure(driver)
     driver_klass = _load_driver(driver)
@@ -32,7 +34,8 @@ module HistoryBook
   def self._load_driver(driver)
     path = "history_book/#{driver}/configuration"
     require path
-    path.classify.constantize
+    klass_name = Drivers.fetch(driver.to_s)
+    HistoryBook.const_get(klass_name).const_get(:Configuration)
   rescue LoadError
     raise "Unable to load #{driver} driver for history_book"
   end

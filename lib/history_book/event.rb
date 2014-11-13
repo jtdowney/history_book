@@ -4,7 +4,7 @@ module HistoryBook
 
     def initialize(type, data = {})
       @type = type
-      @data = data.with_indifferent_access
+      @data = data
     end
 
     def ==(other)

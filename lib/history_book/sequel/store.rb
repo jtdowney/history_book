@@ -28,7 +28,7 @@ module HistoryBook
             @db.from(@events_table).insert(
               :stream_id => id,
               :revision => max_revision,
-              :timestamp => DateTime.now.utc,
+              :timestamp => DateTime.now,
               :type => new_event.type.to_s,
               :data => _encode_data(new_event.data)
             )
@@ -66,11 +66,17 @@ module HistoryBook
       end
 
       def _encode_data(data)
-        MultiJson.encode(data.to_hash).to_sequel_blob
+        io = StringIO.new
+        writer = Transit::Writer.new(:json, io)
+        writer.write(data)
+        io.rewind
+        io.read
       end
 
       def _decode_data(data)
-        MultiJson.decode(data).with_indifferent_access
+        io = StringIO.new(data)
+        reader = Transit::Reader.new(:json, io)
+        reader.read
       end
 
       def _transform_row(row)

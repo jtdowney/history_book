@@ -16,12 +16,10 @@ Gem::Specification.new do |s|
   s.test_files   = Dir.glob('spec/**/*')
   s.require_path = 'lib'
 
-  s.add_dependency 'activesupport', '>= 3.0'
-  s.add_dependency 'multi_json', '>= 1.0'
+  s.add_dependency 'transit-ruby', '~> 0.8'
 
   s.add_development_dependency 'rspec', '2.14.1'
   s.add_development_dependency 'rake', '10.0.3'
   s.add_development_dependency 'sequel', '3.46.0'
   s.add_development_dependency 'sqlite3', '1.3.7'
-  s.add_development_dependency 'yajl-ruby', '1.1.0'
 end
